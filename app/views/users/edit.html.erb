@@ -1,51 +1,28 @@
-<html><head><style type="text/css">.turbolinks-progress-bar {
-  position: fixed;
-  display: block;
-  top: 0;
-  left: 0;
-  height: 3px;
-  background: #0076ff;
-  z-index: 9999;
-  transition: width 300ms ease-out, opacity 150ms 150ms ease-in;
-  transform: translate3d(0, 0, 0);
-}</style>
-      <main>
-        <p id="notice"></p>
-        <div class="container">
-  <div class="row">
-    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-    <h2>User info</h2>
-    <form enctype="multipart/form-data" action="/users/407" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="kxP3IONaZAPz4dh4GuMV5xz85k15GEPo80SHSqdrinyIsJy61MtzTiuM2zJqkrwFEcbdSAnJJWJ008LgEtXx3w==">
+<div class="container">
+<div class="row">
+  <div class="mx-auto">
+    <br>
+<h1>User info</h1>
 
-      <div class="form-group">
-        <label for="user_name">Name</label>
-        <input class="form-control name" type="text" value="ww" name="user[name]" id="user_name">
-      </div>
-     <div class="form-group">
-        <label for="user_image">Image</label>
-        <input value="{}" data-reference="acffb09a2c6fd3e3e141b5adf875adfe" type="hidden" name="user[profile_image]"><input class="form-control-file user_image" data-reference="acffb09a2c6fd3e3e141b5adf875adfe" include_hidden="false" type="file" name="user[profile_image]" id="user_profile_image">
-      </div>
-      <div class="form-group">
-        <label for="user_introduction">Introduction</label>
-        <textarea class="form-control introduction" name="user[introduction]" id="user_introduction"></textarea>
-      </div>
-      <div class="form-group">
-        <input type="submit" name="commit" value="Update User" class="btn btn-secondary" data-disable-with="Update User">
-      </div>
-</form>  </div>
+<br>
+<% if @user.errors.any? %>
+  <%= @user.errors.count %>件のerrorが発生しました
+  <% @user.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+<% end %>
+<%= form_with model: @user, local:true do |f| %>
+<br>
+<br>
+  <h4>Name</h4>
+  <%= f.text_field :name %>
+  <h1>Image</h1>
+  <%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
+  <h4>Introduction</h4>
+  <%= f.text_area :introduction %>
+  <br><%= f.submit 'Update User' %>
+
+<% end %>
 </div>
-
-      </div></main>
-    <footer>
-  <div class="container mt-5">
-  	<div class="row">
-    	<div class="mx-auto">
-    		<p>CopyRight Infratop.inc</p>
-    	</div>
-    </div>
-  </div>
-</footer>
-
-
-
-</body></html>
+</div>
+</div>
